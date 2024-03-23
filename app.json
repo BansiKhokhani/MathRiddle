@@ -1,4 +1,7 @@
 {
   "name": "mathriddle",
-  "displayName": "mathriddle"
+  "displayName": "mathriddle",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-3791007458121855~3256611279"
+  }
 }

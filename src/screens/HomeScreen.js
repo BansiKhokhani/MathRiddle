@@ -7,7 +7,7 @@ const HomeScreen=()=>{
   return (
     <View style={{flex:1,backgroundColor:'black'}}>
         <MainScreen/>
-        <AllLevelsScreen/>
+        
     </View>
   )
 }
