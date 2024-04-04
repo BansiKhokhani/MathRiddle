@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Keyboard, Image } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions, Keyboard, Image, BackHandler ,Linking} from 'react-native'
 import colors from '../../components/colors'
 import IconButton from '../../components/Button/IconButton'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -17,6 +17,13 @@ import { customFontSize, marginSize } from '../../components/helper';
 import { AnswerOfLevel } from '../../components/AnswerOfLevel/AnswerOfLevel';
 import CorrectScreen from '../../components/CorrectScreen/CorrectScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ExitPopup from '../../components/popup/exitPopup';
+import SettingPopup from '../../components/popup/settingPopup';
+import { completedLevelAsyncStorageKey } from '../../components/helper';
+import ClearData from '../../components/popup/clearData';
+import Help from '../../components/popup/help';
+import Toast from 'react-native-simple-toast';
+import CongretulationScreen from '../../components/CongretulationScreen/CongretulationScreen';
 
 const COLUMN_COUNT = 5;
 const ITEM_WIDTH = width / (COLUMN_COUNT + 1);
@@ -27,16 +34,35 @@ function HomeScreen() {
     const [isMainScreen, setIsMainScreen] = useState(true);
     const [isAllLevelScreen, setIsAllLevelScreen] = useState(false);
     const [isLevelScreen, setIsLevelScreen] = useState(false);
+    const [isExit, setIsExit] = useState(false);
+    const [isSettings, setIsSettings] = useState(false);
+    const [isClearData, setIsClearData] = useState(false);
+    const [isHelp, setIsHelp] = useState(false);
     const [isSoundOn, setIsSoundOn] = useState(true);
+    const [isCongretulationScreen, setIsCongretulationScreen] = useState(false);
     const [selectedLevel, setSelectedLevel] = useState(1);
     const [correctAnswerScreen, setCorrectAnswerScreen] = useState(false);
-    const [unlockLevel,setUnlockLevel]=useState(0);
+    const [unlockLevel, setUnlockLevel] = useState(0);
     const [answer, setAnswer] = useState(0);
 
+    useEffect(() => {
+        const backAction = () => {
+            setIsExit(true);
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            backAction,
+        );
+
+        return () => backHandler.remove();
+
+    }, []);
 
     useEffect(() => {
-       unlockLevelNumber();
-    }, []);
+        unlockLevelNumber();
+    }, [isAllLevelScreen, isLevelScreen, isClearData, isMainScreen]);
 
     const wrongAnswerSound = new Sound(wrongAnswerSoundFile, Sound.MAIN_BUNDLE, (error) => {
         if (error) {
@@ -53,19 +79,19 @@ function HomeScreen() {
         // loaded successfully
     });
 
-    const unlockLevelNumber=()=>{
-     
-        loadData().then((value)=>{
-            if(value!=null)
+    const unlockLevelNumber = () => {
+
+        loadData().then((value) => {
+            if (value != null)
                 setUnlockLevel(value)
             else
                 setUnlockLevel(1);
         });
-        
+
     }
     const loadData = async () => {
         try {
-            const value = await AsyncStorage.getItem('completedLevel');
+            const value = await AsyncStorage.getItem(completedLevelAsyncStorageKey);
             return JSON.parse(value);
         } catch (error) {
             console.log('Error loading data:', error);
@@ -74,9 +100,9 @@ function HomeScreen() {
     };
     const saveData = async (levelNumber) => {
         try {
-            
-            loadData().then((value)=>{console.log(value)})
-            await AsyncStorage.setItem('completedLevel',JSON.stringify(levelNumber));
+
+            loadData().then((value) => { console.log(value) })
+            await AsyncStorage.setItem(completedLevelAsyncStorageKey, JSON.stringify(levelNumber));
             console.log('Data saved successfully.');
         } catch (error) {
             console.log('Error saving data:', error);
@@ -90,17 +116,29 @@ function HomeScreen() {
             {isMainScreen &&
                 <View style={styles.mainScreenContainer}>
                     <View style={styles.mainScreensubContainer}>
-                        {/* <BannerAds/> */}
+                        <View style={{ margin: 15, flexDirection: 'row' }}>
+                            <TouchableOpacity activeOpacity={1} style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => {
+                                Linking.openURL('https://play.google.com/store/apps/details?id=com.harekrishna.expensemanager')
+                                    .catch(err => console.error('An error occurred', err));
+                            }}>
+
+                                <Text style={{ fontWeight: '100', fontStyle: 'italic', fontSize: customFontSize / 1.5, color: colors.textColor }}>AD</Text>
+                                <Image source={require('../../../assets/images/Expense_Manager_AppIcon.png')} style={{ height: 50, width: 50, borderRadius: 12 }}></Image>
+                                <Text style={{ fontWeight: '300', fontSize: customFontSize / 1.5, color: colors.textColor }}>Expense</Text>
+                                <Text style={{ fontWeight: '300', fontSize: customFontSize / 1.5, color: colors.textColor }}>Manager</Text>
+                            </TouchableOpacity>
+                            <View style={{ flex: 1 }} />
+                        </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
                             <View style={{ marginBottom: 50 }}>
                                 <Text style={{ fontWeight: '100', fontFamily: 'ROBOTOCONDENSED-ITALIC-VARIABLEFONT_WGHT', fontSize: customFontSize + 20 }}>Math Riddles</Text>
                             </View>
                             <View>
-                                <IconButton name='PLAY' Icon={Ionicons} iconName='play-outline' onCallback={(value) => { setIsMainScreen(false), setIsLevelScreen(true),unlockLevelNumber(),setSelectedLevel(unlockLevel)}} />
+                                <IconButton name='PLAY' Icon={Ionicons} iconName='play-outline' onCallback={(value) => { setIsMainScreen(false), setIsLevelScreen(true), unlockLevelNumber(), setSelectedLevel(unlockLevel) }} />
                                 <IconButton name='LEVELS' Icon={Ionicons} iconName='grid-outline' onCallback={() => { setIsMainScreen(false), setIsAllLevelScreen(true) }} />
                                 <IconButton name={isSoundOn ? 'SOUND ON' : 'SOUND OFF'} Icon={Entypo} iconName={isSoundOn ? 'sound' : 'sound-mute'} onCallback={() => { setIsSoundOn(!isSoundOn) }} />
-                                <IconButton name='SETTING' Icon={Ionicons} iconName='settings-outline' onCallback={() => { console.log('setting') }} />
-                                <IconButton name='EXIT' Icon={AntDesign} iconName='close' onCallback={() => { console.log('exit') }} />
+                                <IconButton name='SETTING' Icon={Ionicons} iconName='settings-outline' onCallback={() => { setIsSettings(!isSettings) }} />
+                                <IconButton name='EXIT' Icon={AntDesign} iconName='close' onCallback={() => { setIsExit(!isExit) }} />
                             </View>
                         </View>
 
@@ -117,7 +155,7 @@ function HomeScreen() {
                         <FlatList
                             data={Array.from({ length: 100 }, (_, index) => index + 1)}
                             renderItem={({ item, index }) => (
-                                <LevelButton itemWidth={ITEM_WIDTH} item={item} levelNumber={index + 1} onCallBack={(levelNumber) => { unlockLevelNumber();if (levelNumber <= unlockLevel) { setIsLevelScreen(true), setIsAllLevelScreen(false), setSelectedLevel(levelNumber) } }} />
+                                <LevelButton itemWidth={ITEM_WIDTH} item={item} color={(index + 1) <= unlockLevel ? colors.activeLevelColor : colors.disableLevelColor} levelNumber={index + 1} onCallBack={(levelNumber) => { unlockLevelNumber(); if (levelNumber <= unlockLevel) { setIsLevelScreen(true), setIsAllLevelScreen(false), setSelectedLevel(levelNumber) } }} />
                             )}
                             numColumns={COLUMN_COUNT}
                             keyExtractor={(item) => item.toString()}
@@ -138,6 +176,7 @@ function HomeScreen() {
                     <View style={[styles.finalLevelScreenContainer, { marginTop: marginSize }]}>
                         <View style={styles.finalLevelScreensubContainer}>
                             <Level currentLevel={selectedLevel} />
+
                         </View>
                     </View>
 
@@ -148,7 +187,7 @@ function HomeScreen() {
                                 <TouchableOpacity style={{ padding: 10 }} onPress={() => { setAnswer(0) }}><AntDesign name='close' size={customFontSize} color={colors.textColor} /></TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row', backgroundColor: colors.buttonColor, flex: 0.3, marginHorizontal: 3 }}>
-                                <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} ><Image source={require('../../../assets/images/idea.png')} resizeMode={'cover'} style={{ alignSelf: 'center', height: '50%', width: '50%', tintColor: colors.textColor }} /></TouchableOpacity>
+                                <TouchableOpacity onPress={() => { setIsHelp(true) }} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} ><Image source={require('../../../assets/images/idea.png')} resizeMode={'cover'} style={{ alignSelf: 'center', height: '50%', width: '50%', tintColor: colors.textColor }} /></TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', backgroundColor: colors.buttonColor, flex: 1, marginHorizontal: 3 }}>
                                 <TouchableOpacity style={{}} onPress={() => {
@@ -166,6 +205,8 @@ function HomeScreen() {
                                         setIsLevelScreen(false);
                                         setCorrectAnswerScreen(true);
                                     }
+                                    else
+                                        Toast.show('Wrong Answer! Try Again', Toast.SHORT);
                                     setAnswer(0)
 
                                 }}><Text style={{ width: width / 3.5, fontSize: customFontSize + 2, fontWeight: '300', textAlign: 'center', color: colors.textColor }}>ENTER</Text></TouchableOpacity>
@@ -191,7 +232,21 @@ function HomeScreen() {
                 </View>}
             {correctAnswerScreen &&
                 <CorrectScreen onCallBack={() => { setCorrectAnswerScreen(false), setIsLevelScreen(true), setSelectedLevel(selectedLevel + 1), saveData(selectedLevel + 1) }} />
-
+            }
+            {isExit &&
+                <ExitPopup onCallBack={(value) => { setIsExit(value) }} />
+            }
+            {isSettings &&
+                <SettingPopup onCallBack={(value) => { (value == 'Close' ? setIsSettings(false) : (setIsSettings(false), setIsClearData(true))) }} />
+            }
+            {isClearData &&
+                <ClearData onCallBack={(value) => { setIsClearData(value), unlockLevelNumber() }} />
+            }
+            {isHelp &&
+                <Help onCallBack={(value) => { setIsHelp(value) }} />
+            }
+            {isCongretulationScreen &&
+                <CongretulationScreen />
             }
         </View>
     )
