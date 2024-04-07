@@ -5,8 +5,6 @@ import IconButton from '../../components/Button/IconButton'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo'
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
-import { BannerAds } from '../../components/Ads/Ads';
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 import Sound from 'react-native-sound';
 import LevelButton from '../../components/Button/LevelButton';
@@ -14,7 +12,8 @@ import Level from '../../components/LevelScreen/LevelScreen';
 import KeyboardButton from '../../components/Button/keyboardButton';
 const { width } = Dimensions.get('window');
 import { customFontSize, marginSize } from '../../components/helper';
-import { AnswerOfLevel } from '../../components/AnswerOfLevel/AnswerOfLevel';
+import { AnswerOfLevel} from '../../components/AnswerOfLevel/AnswerOfLevel';
+import { HintOfLevel } from '../../components/AnswerOfLevel/HintOfLevel';
 import CorrectScreen from '../../components/CorrectScreen/CorrectScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ExitPopup from '../../components/popup/exitPopup';
@@ -136,7 +135,7 @@ function HomeScreen() {
                             <View>
                                 <IconButton name='PLAY' Icon={Ionicons} iconName='play-outline' onCallback={(value) => { setIsMainScreen(false), setIsLevelScreen(true), unlockLevelNumber(), setSelectedLevel(unlockLevel) }} />
                                 <IconButton name='LEVELS' Icon={Ionicons} iconName='grid-outline' onCallback={() => { setIsMainScreen(false), setIsAllLevelScreen(true) }} />
-                                <IconButton name={isSoundOn ? 'SOUND ON' : 'SOUND OFF'} Icon={Entypo} iconName={isSoundOn ? 'sound' : 'sound-mute'} onCallback={() => { setIsSoundOn(!isSoundOn) }} />
+                                <IconButton name={isSoundOn ? 'SOUND ON ' : 'SOUND OFF'} Icon={Entypo} iconName={isSoundOn ? 'sound' : 'sound-mute'} onCallback={() => { setIsSoundOn(!isSoundOn) }} />
                                 <IconButton name='SETTING' Icon={Ionicons} iconName='settings-outline' onCallback={() => { setIsSettings(!isSettings) }} />
                                 <IconButton name='EXIT' Icon={AntDesign} iconName='close' onCallback={() => { setIsExit(!isExit) }} />
                             </View>
@@ -243,7 +242,7 @@ function HomeScreen() {
                 <ClearData onCallBack={(value) => { setIsClearData(value), unlockLevelNumber() }} />
             }
             {isHelp &&
-                <Help onCallBack={(value) => { setIsHelp(value) }} />
+                <Help hint={HintOfLevel[selectedLevel]} solution={AnswerOfLevel[selectedLevel]} onCallBack={(value) => { setIsHelp(value) }} />
             }
             {isCongretulationScreen &&
                 <CongretulationScreen />
