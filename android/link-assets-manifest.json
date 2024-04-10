@@ -2,6 +2,18 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/BRADHITC.TTF",
+      "sha1": "bc773a38f567c9ecec65485bc588065f2215a386"
+    },
+    {
+      "path": "assets/fonts/ITCBLKAD.TTF",
+      "sha1": "93124e27b42b66dff0ffe61a0ce554a0e42d0401"
+    },
+    {
+      "path": "assets/fonts/ROBOTOCONDENSED-ITALIC-VARIABLEFONT_WGHT.TTF",
+      "sha1": "e9bf0cf26de7ddabdb563b78584c3685e58a6597"
+    },
+    {
       "path": "assets/fonts/TEMPSITC.TTF",
       "sha1": "74c22a4df7fe57713a004e6fdee6b74d9620d3b9"
     }

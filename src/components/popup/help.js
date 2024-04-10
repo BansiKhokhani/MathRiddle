@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   buttonText: {
-    color: colors.textcolor,
+    color: colors.textColor,
     fontSize: customFontSize,
     fontWeight: '400'
   },

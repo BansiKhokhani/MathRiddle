@@ -7,9 +7,10 @@ import colors from '../colors'
 export default Level = ({ currentLevel }) => {
 
     const superScript = (base, exponent) => {
+        console.log(base)
         return <View style={{ flexDirection: 'row' }}>
             <View style={{ alignItems: 'flex-end' }}>
-                <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>{base}</Text>
+                <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>{(!isNaN(base))&&base}</Text>
             </View>
             <View style={{ alignItems: 'flex-start' }}>
                 <Text style={{ fontSize: customFontSize, color: colors.textColor, fontWeight: '200' }}>{exponent}</Text>
@@ -150,6 +151,87 @@ export default Level = ({ currentLevel }) => {
             {currentLevel == 24 &&
 
                 <Image source={require('../../../assets/images/SmallSquareBoxPuzzle.png')} style={{ width: 412, height: 212, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 25 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>24 = 16</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>26 = 36</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>27 = 49</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>25 = 25</Text>
+                </>
+            }
+            {currentLevel == 26 &&
+
+                <Image source={require('../../../assets/images/RoundPuzzle-Level26.png')} style={{ width: 312, height: 312, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 27 &&
+
+                <Image source={require('../../../assets/images/FriutPuzzle_Level27.png')} style={{ width: 312, height: 312, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 28 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 5, color: colors.textColor, fontWeight: '200', textAlign: 'center' }}> If P means '+', Q means '-', R means '×' and S means '÷', then the value of the following expression?</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>40 S 4 R 2 P 19 Q 26</Text>
+                </>
+            }
+            {currentLevel == 29 &&
+                <Text style={{ fontSize: customFontSize + 5, color: colors.textColor, fontWeight: '200', textAlign: 'center' }}>The sum of the ages of Ankur, Raj and Ram is 80 years. What was the sum of their ages threee years ago?</Text>
+            }
+            {currentLevel == 30 &&
+                <Text style={{ fontSize: customFontSize + 5, color: colors.textColor, fontWeight: '200', textAlign: 'center' }}>The next term in the series 2, 5, 10, 17, 26, 37,?  is:</Text>
+            }
+            {currentLevel == 31 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>IF</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>A + C = 4</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>D + E = 9</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>B + F = 8</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>G + C = 29</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>THEN</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>G + A = ?</Text>
+                </>
+            }
+            {currentLevel == 32 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>13, 18 = 31</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>7, 25 = 32</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>12, 30 = 42</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>26, 13 = ?</Text>
+
+                </>
+            }
+            {currentLevel == 33 &&
+                <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200', textAlign: 'center' }}>8 - 8 / 4 x 3 = ?</Text>
+            }
+            {currentLevel == 34 &&
+
+                <Image source={require('../../../assets/images/squarePuzzlelevel34.png')} style={{ width: 212, height: 212, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 35 &&
+                <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200', textAlign: 'center' }}>11, 15, 20, ?</Text>
+            }
+            {currentLevel == 36 &&
+                  <>
+                  <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>4, 8 = 32</Text>
+                  <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>5, 3 = 15</Text>
+                  <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>10, 2 = 20</Text>
+                  <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>8, 6 = ?</Text>
+
+              </>
+            }
+              {currentLevel == 37 &&
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>{'('}</Text>
+                    {superScript(3, 2)}
+                    <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>-</Text>
+                    {superScript(2,3)}
+                    <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>{')'}</Text>
+                    {superScript(NaN,66)}
+                    <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}> = ?</Text>
+                </View>
+            }
+            {currentLevel == 38 &&
+                <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>7, 15, 31, ?</Text>
             }
         </View>
     )

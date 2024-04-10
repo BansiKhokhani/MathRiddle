@@ -43,6 +43,7 @@ function HomeScreen() {
     const [correctAnswerScreen, setCorrectAnswerScreen] = useState(false);
     const [unlockLevel, setUnlockLevel] = useState(0);
     const [answer, setAnswer] = useState(0);
+    const [isWrongAnswer,setIsWrongAnswer]=useState(false);
 
     useEffect(() => {
         const backAction = () => {
@@ -107,7 +108,12 @@ function HomeScreen() {
             console.log('Error saving data:', error);
         }
     };
-
+    const showTextForDuration = () => {
+        setIsWrongAnswer(true)
+        setTimeout(() => {
+          setIsWrongAnswer(false)
+        }, 2000);
+      };
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.pageBackgroundColor }}>
@@ -130,12 +136,12 @@ function HomeScreen() {
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
                             <View style={{ marginBottom: 50 }}>
-                                <Text style={{ fontWeight: '100', fontFamily: 'ROBOTOCONDENSED-ITALIC-VARIABLEFONT_WGHT', fontSize: customFontSize + 20 }}>Math Riddles</Text>
+                                <Text style={{ fontWeight: '100', fontFamily:'PixelifySans-Medium', fontSize: customFontSize + 30 }}>Math Riddles</Text>
                             </View>
                             <View>
                                 <IconButton name='PLAY' Icon={Ionicons} iconName='play-outline' onCallback={(value) => { setIsMainScreen(false), setIsLevelScreen(true), unlockLevelNumber(), setSelectedLevel(unlockLevel) }} />
                                 <IconButton name='LEVELS' Icon={Ionicons} iconName='grid-outline' onCallback={() => { setIsMainScreen(false), setIsAllLevelScreen(true) }} />
-                                <IconButton name={isSoundOn ? 'SOUND ON ' : 'SOUND OFF'} Icon={Entypo} iconName={isSoundOn ? 'sound' : 'sound-mute'} onCallback={() => { setIsSoundOn(!isSoundOn) }} />
+                                <IconButton name={isSoundOn ? 'SOUND ON' : 'SOUND OFF'} Icon={Entypo} iconName={isSoundOn ? 'sound' : 'sound-mute'} onCallback={() => { setIsSoundOn(!isSoundOn) }} />
                                 <IconButton name='SETTING' Icon={Ionicons} iconName='settings-outline' onCallback={() => { setIsSettings(!isSettings) }} />
                                 <IconButton name='EXIT' Icon={AntDesign} iconName='close' onCallback={() => { setIsExit(!isExit) }} />
                             </View>
@@ -168,14 +174,14 @@ function HomeScreen() {
             {isLevelScreen &&
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 15, marginTop: marginSize }}>
-                        <TouchableOpacity onPress={() => { setIsAllLevelScreen(true), setIsLevelScreen(false) }} ><View><Ionicons name='chevron-back' size={customFontSize + 20} color={colors.textColor} style={{ fontWeight: '100', marginRight: 20, alignItems: 'center' }} /></View></TouchableOpacity>
+                        <TouchableOpacity activeOpacity={1} onPress={() => { setIsAllLevelScreen(true), setIsLevelScreen(false) }} ><View><Ionicons name='chevron-back' size={customFontSize + 20} color={colors.textColor} style={{ fontWeight: '100', marginRight: 20, alignItems: 'center' }} /></View></TouchableOpacity>
                         <Text style={{ fontSize: customFontSize + 8, fontWeight: '500', color: colors.textColor }}>Level {selectedLevel}</Text>
                     </View>
 
                     <View style={[styles.finalLevelScreenContainer, { marginTop: marginSize }]}>
                         <View style={styles.finalLevelScreensubContainer}>
                             <Level currentLevel={selectedLevel} />
-
+                           <Text style={{textAlign:'center',marginBottom:marginSize,fontSize:customFontSize,color:colors.textColor}}>{isWrongAnswer?'Wrong Answer !':'  '}</Text>
                         </View>
                     </View>
 
@@ -183,14 +189,14 @@ function HomeScreen() {
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around', flex: 0.4 }}>
                             <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: colors.buttonColor, flex: 1, marginHorizontal: 3 }}>
                                 <Text style={{ padding: 10, width: width / 3.5, fontSize: customFontSize, fontWeight: '300', color: colors.textColor, flex: 1 }}>{answer == 0 ? 'Answer' : answer}</Text>
-                                <TouchableOpacity style={{ padding: 10 }} onPress={() => { setAnswer(0) }}><AntDesign name='close' size={customFontSize} color={colors.textColor} /></TouchableOpacity>
+                                <TouchableOpacity activeOpacity={1} style={{ padding: 10 }} onPress={() => { setAnswer(0) }}><AntDesign name='close' size={customFontSize} color={colors.textColor} /></TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row', backgroundColor: colors.buttonColor, flex: 0.3, marginHorizontal: 3 }}>
-                                <TouchableOpacity onPress={() => { setIsHelp(true) }} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} ><Image source={require('../../../assets/images/idea.png')} resizeMode={'cover'} style={{ alignSelf: 'center', height: '50%', width: '50%', tintColor: colors.textColor }} /></TouchableOpacity>
+                                <TouchableOpacity  activeOpacity={1} onPress={() => { setIsHelp(true) }} style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} ><Image source={require('../../../assets/images/idea.png')} resizeMode={'cover'} style={{ alignSelf: 'center', height: '50%', width: '50%', tintColor: colors.textColor }} /></TouchableOpacity>
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', backgroundColor: colors.buttonColor, flex: 1, marginHorizontal: 3 }}>
-                                <TouchableOpacity style={{}} onPress={() => {
-                                    const correctAnswer = (answer == AnswerOfLevel[selectedLevel]);
+                                <TouchableOpacity  activeOpacity={1} style={{}} onPress={() => {
+                                    const correctAnswer = (answer == AnswerOfLevel[selectedLevel-1]);
                                     if (isSoundOn) {
                                         const sound = correctAnswer ? correctAnswerSound : wrongAnswerSound;
                                         sound.play((success) => {
@@ -205,7 +211,7 @@ function HomeScreen() {
                                         setCorrectAnswerScreen(true);
                                     }
                                     else
-                                        Toast.show('Wrong Answer! Try Again', Toast.SHORT);
+                                        showTextForDuration();
                                     setAnswer(0)
 
                                 }}><Text style={{ width: width / 3.5, fontSize: customFontSize + 2, fontWeight: '300', textAlign: 'center', color: colors.textColor }}>ENTER</Text></TouchableOpacity>
@@ -242,7 +248,7 @@ function HomeScreen() {
                 <ClearData onCallBack={(value) => { setIsClearData(value), unlockLevelNumber() }} />
             }
             {isHelp &&
-                <Help hint={HintOfLevel[selectedLevel]} solution={AnswerOfLevel[selectedLevel]} onCallBack={(value) => { setIsHelp(value) }} />
+                <Help hint={HintOfLevel[selectedLevel-1]} solution={AnswerOfLevel[selectedLevel-1]} onCallBack={(value) => { setIsHelp(value) }} />
             }
             {isCongretulationScreen &&
                 <CongretulationScreen />

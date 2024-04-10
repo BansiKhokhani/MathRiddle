@@ -6,7 +6,7 @@ import { customFontSize, marginSize } from '../helper'
 function IconButton({name,Icon,iconName,onCallback}) {
 
     return (
-        <TouchableOpacity onPress={()=>{onCallback('')}} underlayColor={'gray'} style={{ borderWidth: 0.6, paddingRight: marginSize+60, backgroundColor: colors.buttonColor, marginBottom: 5, paddingVertical: marginSize }}>
+        <TouchableOpacity activeOpacity={1} onPress={()=>{onCallback('')}} underlayColor={'gray'} style={{ borderWidth: 0.6, paddingRight: marginSize+60, backgroundColor: colors.buttonColor, marginBottom: 5, paddingVertical: marginSize }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View style={{ marginHorizontal:marginSize }}>
                     <Icon name={iconName} size={customFontSize+10} color={colors.textColor} style={{fontWeight:'300'}} />

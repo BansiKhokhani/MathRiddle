@@ -6,7 +6,7 @@ import { customFontSize } from '../helper'
 function KeyboardButton({item,isPress}) {
 
     return (
-        <TouchableOpacity style={{
+        <TouchableOpacity activeOpacity={1} style={{
             flex:1,
             marginHorizontal:3,
             justifyContent: 'center',
