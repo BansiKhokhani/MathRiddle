@@ -36,5 +36,17 @@ export const HintOfLevel=[
    'The sequence is increasing, so this could involve addition.',
    'Multiplication of two number',
    'Any square or exponent of 1 is 1',
-   '(x*2)+1'
+   '(x*2)+1',
+   'Put last digit at first position',
+   'x = (x*2)+1',
+   'square of A',
+   '(x*y)+3',
+   '(x*2)+7',
+   'Use subtraction concept',
+   'Addition of two inner number',
+   'square of A',
+   '8',
+   '-n',
+   'square of A',
+   'think of PEMDAS or BODMAS rule'
 ]

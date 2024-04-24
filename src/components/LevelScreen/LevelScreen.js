@@ -10,7 +10,7 @@ export default Level = ({ currentLevel }) => {
         console.log(base)
         return <View style={{ flexDirection: 'row' }}>
             <View style={{ alignItems: 'flex-end' }}>
-                <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>{(!isNaN(base))&&base}</Text>
+                <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>{(!isNaN(base)) && base}</Text>
             </View>
             <View style={{ alignItems: 'flex-start' }}>
                 <Text style={{ fontSize: customFontSize, color: colors.textColor, fontWeight: '200' }}>{exponent}</Text>
@@ -162,7 +162,7 @@ export default Level = ({ currentLevel }) => {
             }
             {currentLevel == 26 &&
 
-                <Image source={require('../../../assets/images/RoundPuzzle-Level26.png')} style={{ width: 312, height: 312, resizeMode: 'contain' }} />
+                <Image source={require('../../../assets/images/RoundPuzzle-Level26.png')} style={{ width: 212, height: 212, resizeMode: 'contain' }} />
             }
             {currentLevel == 27 &&
 
@@ -211,27 +211,103 @@ export default Level = ({ currentLevel }) => {
                 <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200', textAlign: 'center' }}>11, 15, 20, ?</Text>
             }
             {currentLevel == 36 &&
-                  <>
-                  <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>4, 8 = 32</Text>
-                  <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>5, 3 = 15</Text>
-                  <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>10, 2 = 20</Text>
-                  <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>8, 6 = ?</Text>
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>4, 8 = 32</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>5, 3 = 15</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>10, 2 = 20</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>8, 6 = ?</Text>
 
-              </>
+                </>
             }
-              {currentLevel == 37 &&
+            {currentLevel == 37 &&
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>{'('}</Text>
                     {superScript(3, 2)}
                     <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>-</Text>
-                    {superScript(2,3)}
+                    {superScript(2, 3)}
                     <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>{')'}</Text>
-                    {superScript(NaN,66)}
+                    {superScript(NaN, 66)}
                     <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}> = ?</Text>
                 </View>
             }
             {currentLevel == 38 &&
                 <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>7, 15, 31, ?</Text>
+            }
+            {currentLevel == 39 &&
+                <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>1783, 3178, 8317, ?</Text>
+            }
+            {currentLevel == 40 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>8 = 17</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>22 = 45</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>15 = 31</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>20 = ?</Text>
+
+                </>
+            }
+            {currentLevel == 41 &&
+
+                <Image source={require('../../../assets/images/squarePuzzlelevel41.png')} style={{ width: 212, height: 212, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 42 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>6, 5 = 33</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>2, 7 = 17</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>11, 4 = 47</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>8, 4 = ?</Text>
+
+                </>
+            }
+            {currentLevel == 43 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>87 = 40</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>31 = 12</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>23 = 8</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>95 = ?</Text>
+
+                </>
+            }
+            {currentLevel == 44 &&
+
+                <Image source={require('../../../assets/images/octagonLevel44.png')} style={{ width: 212, height: 212, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 45 &&
+
+                <Image source={require('../../../assets/images/starlevel45.png')} style={{ width: 212, height: 212, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 46 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>4, 2 = 36</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>3, 7 = 100</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>5, 4 = 81</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>1, 6 = ?</Text>
+
+                </>
+            }
+            {currentLevel == 47 &&
+
+                <Image source={require('../../../assets/images/squarePuzzlelevel47.png')} style={{ width: 212, height: 212, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 48 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>126 = 76</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>132 = 32</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>208 = 58</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>261 = ?</Text>
+
+                </>
+            }
+             {currentLevel == 49 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>5, 3 = 28</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>7, 6 = 55</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>4, 5 = 21</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>3, 8 = ?</Text>
+
+                </>
+            }
+              {currentLevel == 50 &&
+                <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>6÷2(1+2)</Text>
             }
         </View>
     )

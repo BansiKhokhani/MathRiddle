@@ -158,7 +158,7 @@ function HomeScreen() {
                 <View style={styles.levelScreenContainer}>
                     <View style={styles.levelScreensubContainer}>
                         <FlatList
-                            data={Array.from({ length: 100 }, (_, index) => index + 1)}
+                            data={Array.from({ length: 50 }, (_, index) => index + 1)}
                             renderItem={({ item, index }) => (
                                 <LevelButton itemWidth={ITEM_WIDTH} item={item} color={(index + 1) <= unlockLevel ? colors.activeLevelColor : colors.disableLevelColor} levelNumber={index + 1} onCallBack={(levelNumber) => { unlockLevelNumber(); if (levelNumber <= unlockLevel) { setIsLevelScreen(true), setIsAllLevelScreen(false), setSelectedLevel(levelNumber) } }} />
                             )}
@@ -208,7 +208,11 @@ function HomeScreen() {
                                     if (correctAnswer) {
                                         console.log('next level');
                                         setIsLevelScreen(false);
-                                        setCorrectAnswerScreen(true);
+                                        if(selectedLevel>=50)
+                                            setIsCongretulationScreen(true);
+                                        else
+                                            setCorrectAnswerScreen(true);
+                                        
                                     }
                                     else
                                         showTextForDuration();
@@ -236,7 +240,7 @@ function HomeScreen() {
                     </View>
                 </View>}
             {correctAnswerScreen &&
-                <CorrectScreen onCallBack={() => { setCorrectAnswerScreen(false), setIsLevelScreen(true), setSelectedLevel(selectedLevel + 1), saveData(selectedLevel + 1) }} />
+                <CorrectScreen onCallBack={() => {setCorrectAnswerScreen(false), setIsLevelScreen(true), setSelectedLevel(selectedLevel + 1), saveData(selectedLevel + 1) }} />
             }
             {isExit &&
                 <ExitPopup onCallBack={(value) => { setIsExit(value) }} />
@@ -251,7 +255,7 @@ function HomeScreen() {
                 <Help hint={HintOfLevel[selectedLevel-1]} solution={AnswerOfLevel[selectedLevel-1]} onCallBack={(value) => { setIsHelp(value) }} />
             }
             {isCongretulationScreen &&
-                <CongretulationScreen />
+                <CongretulationScreen onCallBack={(value)=>{setIsCongretulationScreen(false),setIsMainScreen(true)}}/>
             }
         </View>
     )
