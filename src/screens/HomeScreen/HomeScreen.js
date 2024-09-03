@@ -11,7 +11,7 @@ import LevelButton from '../../components/Button/LevelButton';
 import Level from '../../components/LevelScreen/LevelScreen';
 import KeyboardButton from '../../components/Button/keyboardButton';
 const { width } = Dimensions.get('window');
-import { customFontSize, marginSize } from '../../components/helper';
+import { totalLevel, customFontSize, marginSize } from '../../components/helper';
 import { AnswerOfLevel} from '../../components/AnswerOfLevel/AnswerOfLevel';
 import { HintOfLevel } from '../../components/AnswerOfLevel/HintOfLevel';
 import CorrectScreen from '../../components/CorrectScreen/CorrectScreen';
@@ -158,7 +158,7 @@ function HomeScreen() {
                 <View style={styles.levelScreenContainer}>
                     <View style={styles.levelScreensubContainer}>
                         <FlatList
-                            data={Array.from({ length: 50 }, (_, index) => index + 1)}
+                            data={Array.from({ length: totalLevel}, (_, index) => index + 1)}
                             renderItem={({ item, index }) => (
                                 <LevelButton itemWidth={ITEM_WIDTH} item={item} color={(index + 1) <= unlockLevel ? colors.activeLevelColor : colors.disableLevelColor} levelNumber={index + 1} onCallBack={(levelNumber) => { unlockLevelNumber(); if (levelNumber <= unlockLevel) { setIsLevelScreen(true), setIsAllLevelScreen(false), setSelectedLevel(levelNumber) } }} />
                             )}
@@ -208,7 +208,7 @@ function HomeScreen() {
                                     if (correctAnswer) {
                                         console.log('next level');
                                         setIsLevelScreen(false);
-                                        if(selectedLevel>=50)
+                                        if(selectedLevel>=totalLevel)
                                             setIsCongretulationScreen(true);
                                         else
                                             setCorrectAnswerScreen(true);

@@ -186,7 +186,7 @@ export default Level = ({ currentLevel }) => {
                     <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>A + C = 4</Text>
                     <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>D + E = 9</Text>
                     <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>B + F = 8</Text>
-                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>G + C = 29</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>G + C = 10</Text>
                     <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>THEN</Text>
                     <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>G + A = ?</Text>
                 </>
@@ -297,7 +297,7 @@ export default Level = ({ currentLevel }) => {
 
                 </>
             }
-             {currentLevel == 49 &&
+            {currentLevel == 49 &&
                 <>
                     <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>5, 3 = 28</Text>
                     <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>7, 6 = 55</Text>
@@ -306,8 +306,63 @@ export default Level = ({ currentLevel }) => {
 
                 </>
             }
-              {currentLevel == 50 &&
+            {currentLevel == 50 &&
                 <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>6÷2(1+2)</Text>
+            }
+            {currentLevel == 51 &&
+                <Image source={require('../../../assets/images/hexagon_level_51.png')} style={{ width: 212, height: 212, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 52 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}> 7, 9 = 8</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>21, 5 = 13</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>36, 2 = 19</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}> 1, 7 = ?</Text>
+
+                </>
+            }
+            {currentLevel == 53 &&
+                <Image source={require('../../../assets/images/squarePuzzleLevel53.png')} style={{ width: 312, height: 312, resizeMode: 'contain' }} />
+            }
+            {currentLevel == 54 &&
+                <>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>4, 5 = 29</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>3, 6 = 27</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>7, 4 = 39</Text>
+                    <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>2, 7 = ?</Text>
+
+                </>
+            }
+            {currentLevel == 55 &&
+                <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>2,6,12,20,30,…</Text>
+            }
+            {currentLevel == 56 &&
+                <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>5,13,21,29,...</Text>
+            }
+            {currentLevel == 57 &&
+                <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>6,14,32,..</Text>
+            }
+            {currentLevel == 58 &&
+                <Text style={{ fontSize: customFontSize + 5, color: colors.textColor, fontWeight: '200', textAlign: 'center' }}>When Tony Was 12 Years Old, His Brother Mark Was Half His Age. If Tony Is 40 Years Old Today, How Old Will Mark Be?</Text>
+            }
+            {currentLevel == 59 &&
+                 <>
+                 <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>□ ÷ 〇 = 3</Text>
+                 <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>□ x 〇 = 3</Text>
+                 <Text style={{ fontSize: customFontSize + 15, color: colors.textColor, fontWeight: '200' }}>□ - 〇= ?</Text>
+
+                </>
+            }
+             {currentLevel == 60 &&
+                 <>
+                 <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>IF</Text>
+                 <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>F + H = 14</Text>
+                 <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>I + K = 19</Text>
+                 <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>B + F = 8</Text>
+                 <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>G + C = 10</Text>
+                 <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>THEN</Text>
+                 <Text style={{ fontSize: customFontSize + 10, color: colors.textColor, fontWeight: '200' }}>G + B = ?</Text>
+             </>
             }
         </View>
     )

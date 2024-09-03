@@ -48,5 +48,15 @@ export const HintOfLevel=[
    '8',
    '-n',
    'square of A',
-   'think of PEMDAS or BODMAS rule'
+   'think of PEMDAS or BODMAS rule',
+   'Muliply with x',
+   '/2',
+   'Adition of two vertical number is answer of the horizontal box',
+   'Try multiplication, and addition to find the pattern',
+    'Increase by 2 each time',
+    'Adding 8 number each time',
+    '(x*2)+y. Y increse with 2 number each time',
+    'Tony is six years older than Mark.',
+    '□ = 3',
+    'Think about the pattern or rule governing the counting sequence'
 ]

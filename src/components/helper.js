@@ -16,3 +16,4 @@ const MARGIN_SCALE_FACTOR = 0.03; // You can adjust this factor based on your pr
 export const marginSize = Math.round(MARGIN_SCALE_FACTOR * Math.min(windowWidth, windowHeight));
 
 export const completedLevelAsyncStorageKey='completedLevel';
+export const totalLevel=60;
