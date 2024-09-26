@@ -8,6 +8,14 @@ The Math Riddle app is a mobile application designed to provide a variety of mat
 -  Offline Mode
 -  Voice Control
 
+  ## 📸 Screenshots
+  <p align="center">
+  <img src="assets/Screenshots/Screenshot-1.jpg" width="200" style="margin-right: 10px;">
+  <img src="assets/Screenshots/Screenshot-3.jpg" width="200" style="margin-left: 10px;">
+  <img src="assets/Screenshots/Screenshot-5.jpg" width="200" style="margin-left: 10px;">
+  <img src="assets/Screenshots/Screenshot-6.jpg" width="200" style="margin-left: 10px;">
+</p>
+
 ## 🛠️ Tech Stack
 - **Frontend**: React Native
-- **Others**: Single Page Mobile App
+- **Others**: Single Page Mobile App, Google Admobs
